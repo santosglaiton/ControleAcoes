@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "24673410310",
+    "project_id": "controle-acao",
+    "storage_bucket": "controle-acao.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24673410310:android:a78d52654f3b1fd5861287",
+        "android_client_info": {
+          "package_name": "com.example.controleacoes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24673410310-p1b9f5uhq893ee62574l6umoka4o6poq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTMysU9ti5C2ro3uWoRSSAt5HoQGfBHXU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24673410310-p1b9f5uhq893ee62574l6umoka4o6poq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
