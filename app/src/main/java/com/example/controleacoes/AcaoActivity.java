@@ -79,12 +79,12 @@ public class AcaoActivity extends AppCompatActivity {
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Acao acao = new Acao();
-                acao.setId(snapshot.getKey());
-                acao.setNome(snapshot.child("nome").getValue(String.class));
-                acao.setPreco(snapshot.child("preco").getValue(Double.class));
-                acao.setQuantidade(snapshot.child("quantidade").getValue(Integer.class));
-                lista.add(acao);
+                Acao acao1 = new Acao();
+                acao1.setId(snapshot.getKey());
+                acao1.setNome(snapshot.child("nome").getValue(String.class));
+                acao1.setPreco(snapshot.child("preco").getValue(String.class));
+                acao1.setQuantidade(snapshot.child("quantidade").getValue(String.class));
+                lista.add(acao1);
                 adapter.notifyDataSetChanged();
             }
 
@@ -95,8 +95,8 @@ public class AcaoActivity extends AppCompatActivity {
                 for (Acao acao : lista){
                     if (acao.getId().equals(idAcao)){
                         acao.setNome(snapshot.child("nome").getValue(String.class));
-                        acao.setPreco(snapshot.child("preco").getValue(Double.class));
-                        acao.setQuantidade(snapshot.child("preco").getValue(Integer.class));
+                        acao.setPreco(snapshot.child("preco").getValue(String.class));
+                        acao.setQuantidade(snapshot.child("preco").getValue(String.class));
                         break;
                     }
                 }
@@ -123,7 +123,22 @@ public class AcaoActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+        query.removeEventListener(childEventListener);
+    }
+
     private void carregarInvestimentos(){
+
+        if (lista.size() == 0){
+            Acao acaoFake = new Acao("Nenhuma acao cadastrada", "00", "00");
+            lista.add(acaoFake);
+            listViewAcoes.setEnabled(false);
+        }else{
+            listViewAcoes.setEnabled(true);
+        }
+
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lista);
         listViewAcoes.setAdapter(adapter);
     }

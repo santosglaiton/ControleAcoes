@@ -19,27 +19,39 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/precoAcao"
         android:layout_width="400dp"
         android:layout_height="52dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="64dp"
         android:hint="Preco do Ativo"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomeAcao" />
+
+    <EditText
+        android:id="@+id/quantidadeAcao"
+        android:layout_width="400dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="56dp"
+        android:hint="Quantidade"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/precoAcao" />
 
     <Button
         android:id="@+id/btnSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="Salvar"
+        android:layout_marginTop="68dp"
         android:backgroundTint="#006600"
+        android:text="Salvar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/quantidadeAcao" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

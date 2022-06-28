@@ -4,30 +4,30 @@ public class Acao {
 
     public String id;
     public String nome;
-    public Double preco;
-    public Integer quantidade;
+    public String preco;
+    public String quantidade;
 
     public Acao() {
     }
 
-    public Acao(String nome, Double preco, Integer quantidade) {
+    public Acao(String nome, String preco, String quantidade) {
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
     }
 
-    public Acao(String id, String nome, Double preco, Integer quantidade) {
+    public Acao(String id, String nome, String preco, String quantidade) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
     }
 
-    public Integer getQuantidade() {
+    public String getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Integer quantidade) {
+    public void setQuantidade(String quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -47,11 +47,17 @@ public class Acao {
         this.nome = nome;
     }
 
-    public Double getPreco() {
+    public String getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(String preco) {
         this.preco = preco;
     }
+
+    @Override
+    public String toString() {
+        return "Acao: " + nome + '\n' + "Preco medio: " + preco + '\n' + "Quantidade: " + quantidade;
+    }
+
 }
