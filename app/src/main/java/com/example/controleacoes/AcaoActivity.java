@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,22 +81,21 @@ public class AcaoActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Acao acao1 = new Acao();
+
                 acao1.setId(snapshot.getKey());
+
                 acao1.setNome(snapshot.child("nome").getValue(String.class));
                 acao1.setPreco(snapshot.child("preco").getValue(String.class));
                 acao1.setQuantidade(snapshot.child("quantidade").getValue(String.class));
                 lista.add(acao1);
+
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                Acao acaoAtualizada = snapshot.getValue(Acao.class);
-
                 String idAcao = snapshot.getKey();
-
-
 
                 for (Acao acao : lista){
                     if (acao.getId().equals(idAcao)){
@@ -139,6 +139,7 @@ public class AcaoActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lista);
         listViewAcoes.setAdapter(adapter);
     }
+
 
 
 }
