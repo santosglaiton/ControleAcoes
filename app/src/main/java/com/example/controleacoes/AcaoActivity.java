@@ -87,6 +87,7 @@ public class AcaoActivity extends AppCompatActivity {
                 acao1.setNome(snapshot.child("nome").getValue(String.class));
                 acao1.setPreco(snapshot.child("preco").getValue(String.class));
                 acao1.setQuantidade(snapshot.child("quantidade").getValue(String.class));
+                acao1.setPrecoTotal(snapshot.child("precoTotal").getValue(String.class));
                 lista.add(acao1);
 
                 adapter.notifyDataSetChanged();
@@ -102,6 +103,7 @@ public class AcaoActivity extends AppCompatActivity {
                         acao.setNome(snapshot.child("nome").getValue(String.class));
                         acao.setPreco(snapshot.child("preco").getValue(String.class));
                         acao.setQuantidade(snapshot.child("preco").getValue(String.class));
+                        acao.setPrecoTotal(snapshot.child("precoTotal").getValue(String.class));
                         break;
                     }
                 }

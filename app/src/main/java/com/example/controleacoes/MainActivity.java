@@ -103,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
 
                     acao2.setNome(nome);
 
-                    acao2.setQuantidade(somaQuantidadeAcoes(acao.getQuantidade(), acao2.getQuantidade()));
+                    acao2.setPrecoTotal(precoTotal(acao.getPreco(), acao.getQuantidade(), acao2.getPrecoTotal() ));
 
-                    acao2.setPreco(somaPrecoMedio(acao.getPreco(), acao2.getPreco(), acao2.getQuantidade()));
+                    acao2.setQuantidade(somaQuantidadeAcoes(quantidadeAcoesString, acao2.getQuantidade()));
 
-                    acao2.setPreco(precoAcaoString);
+                    acao2.setPreco(somaPrecoMedio( acao2.getPrecoTotal(), acao2.getQuantidade()));
 
                     Map<String, Object> postValues = acao2.toMap();
 
@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     acao.setNome(nome);
                     acao.setPreco(precoAcaoString);
                     acao.setQuantidade(quantidadeAcoesString);
+                    acao.setPrecoTotal(precoTotal(acao.getPreco(), acao.getQuantidade(),  "0"));
                     if (!nome.isEmpty() && !precoAcaoString.isEmpty() && !quantidadeAcoesString.isEmpty()) {
                         if (acoes.equals("adicionar")) {
                             if (databaseReference.child("acoes").child("nome").equals(acao.getNome())) {
@@ -145,21 +146,47 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String somaPrecoMedio(String valorAtual, String valorAntigo, String quantidadeAcoes){
+    public String precoTotal(String valorAtual, String quantidadeAcoes, String precoTotal){
+
+        Double valorDeAgora;
+        Double quantidade;
+        valorDeAgora = Double.parseDouble(valorAtual);
+        quantidade = Double.parseDouble(quantidadeAcoes);
+        Double precoTotal1;
+
+        precoTotal1 = Double.parseDouble(precoTotal);
+
+        Double resultadoDouble;
+
+        resultadoDouble = (valorDeAgora * quantidade) + precoTotal1;
+
+        return resultadoDouble.toString();
+    }
+
+
+    public String somaPrecoMedio(String valorAtual, String quantidadeAcoes){
         String precoFinal;
         Double quantidadeFinal;
         Double precoFinalTransition;
-        Double precoAntigo;
+
         Double precoAtual;
+
 
         quantidadeFinal = Double.parseDouble(quantidadeAcoes);
 
-        precoAntigo = Double.parseDouble(valorAntigo);
+
+        System.out.println("PRECO atual" + valorAtual);
+
+
+
         precoAtual = Double.parseDouble(valorAtual);
 
-        precoFinalTransition = (precoAntigo + precoAtual) / quantidadeFinal;
+        precoFinalTransition = precoAtual / quantidadeFinal;
+
 
         precoFinal = String.valueOf(precoFinalTransition);
+
+        System.out.println("PRECO FINAL " + precoFinal);
 
         return precoFinal;
     }
@@ -170,7 +197,10 @@ public class MainActivity extends AppCompatActivity {
         Integer quantidadeParaAdicionar;
         Integer quantidadeFinalTransition;
 
+        System.out.println("QUANTIDADE ATUAL " + quantidadeAtual);
+
         quantidadeExistente = Integer.parseInt(quantidadeAtual);
+
         quantidadeParaAdicionar = Integer.parseInt(quantidadeAAdicionar);
 
         quantidadeFinalTransition = quantidadeExistente + quantidadeParaAdicionar;

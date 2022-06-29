@@ -11,21 +11,24 @@ public class Acao {
     public String nome;
     public String preco;
     public String quantidade;
+    public String precoTotal;
 
     public Acao() {
     }
 
-    public Acao(String nome, String preco, String quantidade) {
+    public Acao(String nome, String preco, String quantidade, String precoTotal) {
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
+        this.precoTotal = precoTotal;
     }
 
-    public Acao(String id, String nome, String preco, String quantidade) {
+    public Acao(String id, String nome, String preco, String quantidade, String precoTotal) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
+        this.precoTotal = precoTotal;
     }
 
     public String getQuantidade() {
@@ -60,9 +63,17 @@ public class Acao {
         this.preco = preco;
     }
 
+    public String getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public void setPrecoTotal(String precoTotal) {
+        this.precoTotal = precoTotal;
+    }
+
     @Override
     public String toString() {
-        return "Acao: " + nome + '\n' + "Preco medio: " + preco + '\n' + "Quantidade: " + quantidade;
+        return "Acao: " + nome + '\n' + "Preco medio: " + preco + '\n' + "Quantidade: " + quantidade + '\n' + "Preco Total: " + precoTotal;
     }
 
     @Exclude
@@ -72,6 +83,7 @@ public class Acao {
         result.put("nome", nome);
         result.put("preco", preco);
         result.put("quantidade", quantidade);
+        result.put("precoTotal", precoTotal);
 
         return result;
     }
