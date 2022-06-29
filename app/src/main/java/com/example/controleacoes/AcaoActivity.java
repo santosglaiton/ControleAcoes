@@ -42,7 +42,7 @@ public class AcaoActivity extends AppCompatActivity {
         setContentView(R.layout.first_page);
 
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("acoes");
+        databaseReference = database.getReference();
 
         listViewAcoes = findViewById(R.id.listViewAcoes);
         btnAdicionar = findViewById(R.id.btnAdicionar);
@@ -102,7 +102,6 @@ public class AcaoActivity extends AppCompatActivity {
                         acao.setNome(snapshot.child("nome").getValue(String.class));
                         acao.setPreco(snapshot.child("preco").getValue(String.class));
                         acao.setQuantidade(snapshot.child("preco").getValue(String.class));
-                        System.out.println(acao);
                         break;
                     }
                 }
