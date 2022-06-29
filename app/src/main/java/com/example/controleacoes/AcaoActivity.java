@@ -42,7 +42,7 @@ public class AcaoActivity extends AppCompatActivity {
         setContentView(R.layout.first_page);
 
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference();
+        databaseReference = database.getReference("acoes");
 
         listViewAcoes = findViewById(R.id.listViewAcoes);
         btnAdicionar = findViewById(R.id.btnAdicionar);
@@ -91,12 +91,18 @@ public class AcaoActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
+                Acao acaoAtualizada = snapshot.getValue(Acao.class);
+
                 String idAcao = snapshot.getKey();
+
+
+
                 for (Acao acao : lista){
                     if (acao.getId().equals(idAcao)){
                         acao.setNome(snapshot.child("nome").getValue(String.class));
                         acao.setPreco(snapshot.child("preco").getValue(String.class));
                         acao.setQuantidade(snapshot.child("preco").getValue(String.class));
+                        System.out.println(acao);
                         break;
                     }
                 }
@@ -131,16 +137,9 @@ public class AcaoActivity extends AppCompatActivity {
 
     private void carregarInvestimentos(){
 
-        if (lista.size() == 0){
-            Acao acaoFake = new Acao("Nenhuma acao cadastrada", "00", "00");
-            lista.add(acaoFake);
-            listViewAcoes.setEnabled(false);
-        }else{
-            listViewAcoes.setEnabled(true);
-        }
-
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lista);
         listViewAcoes.setAdapter(adapter);
     }
+
 
 }

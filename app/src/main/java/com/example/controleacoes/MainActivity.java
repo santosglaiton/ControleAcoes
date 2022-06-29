@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
     private Acao acao;
     private String acoes;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = database.getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +60,6 @@ public class MainActivity extends AppCompatActivity {
             acao.setNome(nome);
             acao.setPreco(precoAcaoString);
             acao.setQuantidade(quantidadeAcoesString);
-
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = database.getReference();
-
             if (acoes.equals("adicionar")){
                 databaseReference.child("acoes").push().setValue(acao);
             }else{
